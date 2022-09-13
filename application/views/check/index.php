@@ -74,11 +74,11 @@
             <!-- .container -->
             <div class="container container-fluid-xl">
                 <!-- .row -->
-                <div class="row align-items-center">
+                <div class="row">
                     <!-- .col-md-6 -->
-                    <div class="col-12 col-md-6 order-md-2" data-aos="fade-left">
+                    <!-- <div class="col-12 col-md-6 order-md-2" data-aos="fade-left">
                         <img class="img-fluid img-float-md-6 mb-5 mb-md-0" src="assets/images/illustration/launch.svg" alt="">
-                    </div><!-- /.col-md-6 -->
+                    </div> -->
                     <!-- .col-md-6 -->
                     <div class="col-12 col-md-6 order-md-1" data-aos="fade-in">
                         <div class="col-fix pl-xl-3 ml-auto text-center text-sm-left">
@@ -86,7 +86,7 @@
                                 <!-- .card-body -->
                                 <div class="card-body">
                                     <!-- .progress-list -->
-                                    <form action="<?= base_url('check/site') ?>" method="post" class="w-75 mx-auto mt-3">
+                                    <form id="check-site" class="w-75 mx-auto mt-3">
                                         <div class="form-group">
                                             <div class="input-group bg-white border-white input-group">
                                                 <input type="text" name="site_id" class="form-control text-black" placeholder="Masukkan Site ID" value="<?= $this->session->userdata('site_id') ?>" autofocus required autocomplete="off">
@@ -96,40 +96,19 @@
                                             </div>
                                         </div>
                                     </form>
-                                    <?php if ($this->session->userdata('site_id')) : ?>
-                                        <div class="w-45 mx-auto mt-4 mb-4" style="text-align: center;">
-                                            <div class="btn-group" role="group">
-                                                <a title="Refresh" href="<?= base_url(); ?>" class="btn btn-subtle-primary"><?= $this->session->userdata('site_id') ?></a> <a href="<?= base_url('check/clear'); ?>" class="btn btn-subtle-primary"><i class="fas fw fa-trash"></i></a>
-                                            </div>
-                                        </div>
-                                        <hr class="hr mt-2 mb-4 mx-4">
-                                        <?php if (!$site == null) : ?>
-                                            <ol class="progress-list mb-5">
-                                                <li class="<?= $step1; ?>">
-                                                    <button type="button">
-                                                        <!-- progress indicator -->
-                                                        <span class="progress-indicator"></span></button> <span class="progress-label  d-sm-inline-block">Verifikasi admin</span>
-                                                </li>
-                                                <li class="<?= $step2; ?>">
-                                                    <button type="button">
-                                                        <!-- progress indicator -->
-                                                        <span class="progress-indicator"></span></button> <span class="progress-label d-sm-inline-block">Sedang diproses</span>
-                                                </li>
-                                                <li class="<?= $step3; ?>">
-                                                    <button type="button">
-                                                        <!-- progress indicator -->
-                                                        <span class="progress-indicator"></span></button> <span class="progress-label  d-sm-inline-block">Pengkoneksian</span>
-                                                </li>
-                                                <li class="<?= $step4; ?>">
-                                                    <button type="button">
-                                                        <!-- progress indicator -->
-                                                        <span class="progress-indicator"></span></button> <span class="progress-label d-sm-inline-block">Site aktif</span>
-                                                </li>
-                                            </ol><!-- /.progress-list -->
-                                        <?php else : ?>
-                                            <p class="text-center"> Data tidak ditemukan! </p>
-                                        <?php endif ?>
-                                    <?php endif ?>
+                                </div>
+                            </div><!-- /.card -->
+                        </div>
+                    </div><!-- /.col-md-6 -->
+                    <div class="col-12 col-md-6 order-md-1 d-none" id="history" data-aos="fade-in">
+                        <div class="col-fix pl-xl-3 mr-auto text-center">
+                            <div class="card">
+                                <!-- .card-body -->
+                                <div class="card-body">
+                                    <span id="empty-history" class="d-none">Tidak ada data.</span>
+                                    <ul id="timeline-history" class="timeline timeline-dashed-line mt-2 pr-0 text-left d-none">
+
+                                    </ul>
                                 </div>
                             </div><!-- /.card -->
                         </div>
@@ -171,11 +150,10 @@
     <script src="<?= base_url() ?>assets/vendor/parsleyjs/parsley.min.js"></script>
     <script src="<?= base_url() ?>assets/vendor/text-mask/vanillaTextMask.js"></script>
     <script src="<?= base_url() ?>assets/vendor/text-mask/addons/textMaskAddons.js"></script>
-    <script src="<?= base_url() ?>assets/vendor/bs-stepper/js/bs-stepper.min.js"></script> <!-- END PLUGINS JS -->
     <!-- BEGIN THEME JS -->
     <script src="<?= base_url() ?>assets/javascript/theme.min.js"></script> <!-- END THEME JS -->
     <!-- BEGIN PAGE LEVEL JS -->
-    <script src="<?= base_url() ?>assets/javascript/pages/steps-demo.js"></script> <!-- END PAGE LEVEL JS -->
+    <script src="<?= base_url() ?>assets/javascript/check.js"></script> <!-- END PAGE LEVEL JS -->
 </body>
 
 </html>

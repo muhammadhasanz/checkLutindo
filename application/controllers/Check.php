@@ -45,9 +45,11 @@ class Check extends CI_Controller
     }
     public function site()
     {
-        $data = ['site_id' => $this->input->post('site_id')];
-        $this->session->set_userdata($data);
-        redirect();
+        $site_id = $this->input->post('site_id');
+
+        $data['check_site'] = $this->db->order_by("tahap_id", "desc")->get_where('check_site', ['site_id' => $site_id, 'status' => 1])->result();
+
+        echo (json_encode($data));
     }
     public function clear()
     {
