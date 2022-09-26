@@ -54,7 +54,7 @@ $(window).on('load', function () {
                         // })
                         // $.each(result.check_site, (key, value) => {
                         // console.log(value)
-                        //     const event = new Date(value.updated_at).toLocaleString().split(' ');
+                        //     const event = new Date(value.updated_at).toLocaleString("en-GB").split(', ');
                         //     const date_time = event[1].split('.');
                         //     if (value.status == 1) {
                         //         $('#timeline-history').append(`<li class="timeline-item">
@@ -70,15 +70,14 @@ $(window).on('load', function () {
                     }
                     $.each(result.check_site, (key, value) => {
                         // console.log(value)
-                        const event = new Date(value.updated_at).toLocaleString().split(' ');
-                        const date_time = event[1].split('.');
+                        const event = new Date(value.updated_at).toLocaleString("en-GB").split(', ');
                         if (value.status == 1) {
                             $('#timeline-history').append(`<li class="timeline-item">
                                 <div class="timeline-figure">
                                     <span class="tile tile-circle tile-xs bg-success"><i class="fa fa-check d-print-none"></i></span>
                                 </div>
                                 <div class="timeline-body">
-                                    <h6 class="timeline-heading"> ${history[value.tahap_id - 1]} </h6><span class="timeline-date d-print-none">${event[0]} - ${date_time[0]}:${date_time[1]}</span>
+                                    <h6 class="timeline-heading"> ${history[value.tahap_id - 1]} </h6><span class="timeline-date d-print-none">${event[0]} - ${event[1]}</span>
                                 </div>
                             </li>`)
                         }
