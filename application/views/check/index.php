@@ -59,10 +59,7 @@
                             <a class="nav-link py-2" href="<?= base_url() ?>">Check</a>
                         </li>
                         <li class="nav-item mr-lg-3">
-                            <a class="nav-link py-2" target="_blank" href="https://www.lutindo.ga/">Portfolio</a>
-                        </li>
-                        <li class="nav-item mr-lg-3">
-                            <a class="nav-link py-2" target="_blank" href="https://service.lutindo.ga/">Service</a>
+                            <a class="nav-link py-2" target="_blank" href="https://www.lutindo.com/">Portfolio</a>
                         </li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
