@@ -8,13 +8,31 @@ $(window).on('load', function () {
         event.preventDefault()
         let data = $(this).serialize()
         // console.log(data)
+        $('biaya-null').show()
+        $('#rincian-biaya').hide()
+        $(`#site_0`).html('-')
+        $(`#site_1`).html('-')
+        $(`#site_2`).html('-')
+        var hostApp = window.location.host.split('.')
         $.ajax({
             type: 'POST',
             url: `${window.origin}/check/site`,
             data: data,
             dataType: "JSON",
             success: function (result) {
-                console.log(result)
+                // console.log(result)
+                $.each(result.data, (key, value) => {
+                    $(`#site_${key}`).html(`${value}`)
+                })
+                if (result.biaya) {
+                    $(`#biaya-null`).hide()
+                    $('#rincian-biaya').attr('onclick', `lihatFile('${result.biaya}')`)
+                    $('#rincian-biaya').show()
+                } else {
+                    $('#rincian-biaya').hide()
+                    $(`#biaya-null`).show()
+                }
+                $('#detail-site').removeClass('d-none')
                 $('#timeline-history').html('')
                 $('#history').removeClass('d-none')
                 if (result.check_site.length < 1) {
@@ -67,6 +85,7 @@ $(window).on('load', function () {
                         //         </li>`)
                         //     }
                         // })
+                        // list-group-item justify-content-between align-items-center
                     }
                     $.each(result.check_site, (key, value) => {
                         // console.log(value)
@@ -76,8 +95,11 @@ $(window).on('load', function () {
                                 <div class="timeline-figure">
                                     <span class="tile tile-circle tile-xs bg-success"><i class="fa fa-check d-print-none"></i></span>
                                 </div>
-                                <div class="timeline-body">
-                                    <h6 class="timeline-heading"> ${history[value.tahap_id - 1]} </h6><span class="timeline-date d-print-none">${event[0]} - ${event[1]}</span>
+                                <div class="timeline-body d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="timeline-heading"> ${history[value.tahap_id - 1]} </h6><span class="timeline-date d-print-none">${event[0]} - ${event[1]}</span>
+                                    </div>
+                                    ${value.file_dokumentasi != null ? `<div><a href="https://app.${hostApp[1]}.${hostApp[2]}/assets/images/dokumentasi/${value.file_dokumentasi}" data-lightbox="${value.site_type}" data-title="Catatan  : ${value.catatan ?? '-'}"><span class="oi oi-magnifying-glass mr-3" style="cursor: pointer;"></span></a></div>` : '<div></div>'}
                                 </div>
                             </li>`)
                         }
@@ -87,6 +109,17 @@ $(window).on('load', function () {
         })
     })
 })
+
+function lihatFile(url) {
+    var height = 500
+    var width = 800
+    var top = parseInt((screen.availHeight) - height - 100);
+    var left = parseInt((screen.availWidth) - width - 300);
+    var features = "location=1, status=1, scrollbars=1, width=" + width + ", height=" + height + ", top=" + top + ", left=" + left;
+    console.log(url)
+
+    window.open(url, "RincianBiaya", features);
+}
 
 {/* <li class="timeline-item">
 <div class="timeline-figure">

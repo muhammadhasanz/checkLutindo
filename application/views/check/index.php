@@ -26,6 +26,7 @@
     <!-- BEGIN PLUGINS STYLES -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/open-iconic/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>assets/vendor/fontawesome/css/all.css"><!-- END PLUGINS STYLES -->
+    <link href="<?= base_url() ?>assets/vendor/lightbox/css/lightbox.min.css" rel="stylesheet">
     <!-- BEGIN THEME STYLES -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/stylesheets/theme.min.css" data-skin="default">
     <link rel="stylesheet" href="<?= base_url() ?>assets/stylesheets/theme-dark.min.css" data-skin="dark">
@@ -78,34 +79,77 @@
                     </div> -->
                     <!-- .col-md-6 -->
                     <div class="col-12 col-md-6 order-md-1" data-aos="fade-in">
-                        <div class="col-fix pl-xl-3 ml-auto text-center text-sm-left">
-                            <div class="card">
-                                <!-- .card-body -->
-                                <div class="card-body">
-                                    <!-- .progress-list -->
-                                    <form id="check-site" class="w-75 mx-auto mt-3">
-                                        <div class="form-group">
-                                            <div class="input-group bg-white border-white input-group">
-                                                <input type="text" name="site_id" class="form-control text-black" placeholder="Masukkan Site ID" value="<?= $this->session->userdata('site_id') ?>" autofocus required autocomplete="off">
-                                                <div class="input-group-append">
-                                                    <button type="submit" class="btn btn-warning "><i class="fas fa-search"></i></button>
+                        <div class="col-fix pl-xl-3 ml-auto text-sm-left ">
+                            <div class="row align-items-start">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <!-- .card-body -->
+                                        <div class="card-body">
+                                            <!-- .progress-list -->
+                                            <form id="check-site" class="w-75 mx-auto mt-3">
+                                                <div class="form-group">
+                                                    <div class="input-group bg-white border-white input-group">
+                                                        <input type="text" name="site_id" class="form-control text-black" placeholder="Masukkan Site ID" value="<?= $this->session->userdata('site_id') ?>" autofocus required autocomplete="off">
+                                                        <div class="input-group-append">
+                                                            <button type="submit" class="btn btn-warning "><i class="fas fa-search"></i></button>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            </form>
                                         </div>
-                                    </form>
+                                    </div><!-- /.card -->
                                 </div>
-                            </div><!-- /.card -->
+                                <div class="col-md-12 d-none" id="detail-site">
+                                    <div class="card">
+                                        <!-- .card-body -->
+                                        <div class="card-body">
+                                            <table class="m-2" style="font-size: 14px;">
+                                                <tr>
+                                                    <td style="vertical-align: top; width: 100px; max-width:100px;">Long/Lat&nbsp;</td>
+                                                    <td style="vertical-align: top; width: 20px; max-width:20px;">&nbsp;:&nbsp;&nbsp;</td>
+                                                    <td id="site_0" class="site_data text-break">-</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="vertical-align: top;">Alamat&nbsp;</td>
+                                                    <td style="vertical-align: top;">&nbsp;:&nbsp;&nbsp;</td>
+                                                    <td id="site_1" class="site_data text-break">-</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="vertical-align: top;">Pemilik&nbsp;</td>
+                                                    <td style="vertical-align: top;">&nbsp;:&nbsp;&nbsp;</td>
+                                                    <td id="site_2" class="site_data text-break">-</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Rincian Biaya&nbsp;</td>
+                                                    <td>&nbsp;:&nbsp;&nbsp;</td>
+                                                    <td>
+                                                        <button type="button" style="display: none;" class="btn btn-secondary btn-sm" id="rincian-biaya">Lihat</button>
+                                                        <span id="biaya-null" style="display: none;">-</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div><!-- /.card -->
+                                </div>
+                            </div>
                         </div>
+                        <!-- <div class="col-fix col-md-12 pl-xl-3 ml-auto text-sm-left align-self-start">
+                            
+                        </div> -->
                     </div><!-- /.col-md-6 -->
                     <div class="col-12 col-md-6 order-md-1 d-none" id="history" data-aos="fade-in">
                         <div class="col-fix pl-xl-3 mr-auto text-center">
-                            <div class="card">
-                                <!-- .card-body -->
-                                <div class="card-body">
-                                    <span id="empty-history" class="d-none">Tidak ada data.</span>
-                                    <ul id="timeline-history" class="timeline timeline-dashed-line mt-2 pr-0 text-left d-none">
+                            <div class="row align-items-start">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <!-- .card-body -->
+                                        <div class="card-body">
+                                            <span id="empty-history" class="d-none">Tidak ada data.</span>
+                                            <ul id="timeline-history" class="timeline timeline-dashed-line mt-2 pr-0 text-left d-none">
 
-                                    </ul>
+                                            </ul>
+                                        </div>
+                                    </div><!-- /.card -->
                                 </div>
                             </div><!-- /.card -->
                         </div>
@@ -147,6 +191,7 @@
     <script src="<?= base_url() ?>assets/vendor/parsleyjs/parsley.min.js"></script>
     <script src="<?= base_url() ?>assets/vendor/text-mask/vanillaTextMask.js"></script>
     <script src="<?= base_url() ?>assets/vendor/text-mask/addons/textMaskAddons.js"></script>
+    <script src="<?= base_url() ?>assets/vendor/lightbox/js/lightbox.min.js"></script>
     <!-- BEGIN THEME JS -->
     <script src="<?= base_url() ?>assets/javascript/theme.min.js"></script> <!-- END THEME JS -->
     <!-- BEGIN PAGE LEVEL JS -->
